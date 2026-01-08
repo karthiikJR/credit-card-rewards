@@ -1,0 +1,203 @@
+/* Login Page Styles - NeoPOP Theme */
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cred-black);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background grid effect */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.loginCard {
+  width: 100%;
+  max-width: 420px;
+  background: var(--cred-surface);
+  border: 1px solid var(--cred-border);
+  box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.5); /* Hard shadow */
+  position: relative;
+  z-index: 10;
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 32px 32px 0 32px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  margin-top: 32px;
+  border-bottom: 1px solid var(--cred-border);
+}
+
+.tab {
+  flex: 1;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: white;
+  background: rgba(255,255,255,0.02);
+}
+
+.activeTab {
+  color: white;
+  border-bottom-color: var(--neopop-white);
+  background: rgba(255,255,255,0.05);
+}
+
+/* Form Area */
+.formContent {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.label {
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.input {
+  background: var(--cred-black);
+  border: 1px solid var(--cred-border);
+  border-radius: 0; /* Sharp corners */
+  padding: 16px 20px;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.input:focus {
+  border-color: var(--neopop-white);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
+  background: #151515;
+}
+
+.submitButton {
+  width: 100%;
+  background: white;
+  color: black;
+  border: 1px solid white;
+  padding: 18px;
+  border-radius: 0; /* Sharp */
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 6px 6px 0px rgba(255, 255, 255, 0.2);
+  margin-top: 8px;
+}
+
+.submitButton:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px rgba(255, 255, 255, 0.3);
+}
+
+.submitButton:active {
+  transform: translate(0, 0);
+  box-shadow: 0px 0px 0px rgba(255, 255, 255, 0.2);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 16px 0;
+  letter-spacing: 1px;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--cred-border);
+  margin: 0 16px;
+}
+
+.backLink {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+  z-index: 20;
+}
+
+.backLink:hover {
+  color: white;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
