@@ -1,0 +1,141 @@
+.stackContainer {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  height: 480px; /* Increased height for messy rotation clearance */
+  margin: 20px auto;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.stackItem {
+  /* Absolute centering like the reference */
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  margin: auto;
+  width: 100%;
+  height: fit-content; /* Let card determine height */
+  
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  transform-origin: center center;
+  
+  /* Default state for deep stack items */
+  transform: translate3d(0, 0, -100px) rotate(0deg);
+  opacity: 0; /* Hide deep cards */
+  z-index: 1;
+}
+
+/* MESSY STACK STATES utilizing nth-child */
+
+/* 1st Card (Top) */
+.stackItem:nth-child(1) {
+  transform: translate3d(0, 0, 0) rotate(-3deg);
+  opacity: 1;
+  z-index: 10;
+}
+
+/* 2nd Card */
+.stackItem:nth-child(2) {
+  transform: translate3d(0, 0, -20px) rotate(4deg);
+  opacity: 1;
+  z-index: 9;
+}
+
+/* 3rd Card */
+.stackItem:nth-child(3) {
+  transform: translate3d(0, 0, -40px) rotate(-2deg);
+  opacity: 1;
+  z-index: 8;
+}
+
+/* 4th Card */
+.stackItem:nth-child(4) {
+  transform: translate3d(0, 0, -60px) rotate(2deg);
+  opacity: 0.8;
+  z-index: 7;
+}
+
+/* Hover effect for top card */
+.stackItem:nth-child(1):hover {
+  transform: translate3d(0, -10px, 10px) rotate(-3deg);
+}
+
+/* SHUFFLE ANIMATION */
+.flyOut {
+  animation: shuffleCycle 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards; /* Slower, smooth */
+  transition: none !important;
+  z-index: 100 !important;
+}
+
+@keyframes shuffleCycle {
+  0% {
+    /* Start at current messy position */
+    transform: translate3d(0, 0, 0) rotate(-3deg);
+  }
+  45% {
+    /* Swoop Left & Up out of the stack */
+    transform: translate3d(-90%, -50px, 50px) rotate(-10deg);
+  }
+  75% {
+    /* Loop behind - softer landing entry */
+    transform: translate3d(-40%, 10px, -100px) rotate(-4deg);
+    opacity: 1;
+  }
+  100% {
+    /* Land at the back */
+    transform: translate3d(0, 0, -60px) rotate(2deg);
+    opacity: 1;
+  }
+}
+
+.detailsButton {
+  position: absolute;
+  bottom: 20px; /* Moved down slightly */
+  right: 20px; /* Moved to right corner for better ergonomics on card */
+  left: auto;
+  transform: none;
+  background: white;
+  color: black;
+  border: 1px solid white;
+  padding: 12px 24px;
+  border-radius: 0; /* Sharp NeoPOP */
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 20;
+  pointer-events: auto;
+  /* Hard shadow */
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+}
+
+.stackItem:nth-child(1):hover .detailsButton {
+  opacity: 1;
+  transform: translate(-2px, -2px); /* Lift up effect */
+}
+
+.detailsButton:hover {
+  background: #f0f0f0;
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.7);
+  transform: translate(-4px, -4px);
+}
+
+.detailsButton:active {
+  transform: translate(0, 0);
+  box-shadow: 0px 0px 0px rgba(0,0,0,0.5);
+}
+
+.stackInstructions {
+  position: absolute;
+  bottom: -40px;
+  width: 100%;
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

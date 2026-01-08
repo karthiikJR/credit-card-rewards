@@ -1,0 +1,167 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal {
+  background: var(--cred-surface);
+  width: 100%;
+  max-width: 500px;
+  border-radius: 0; /* Sharp NeoPOP */
+  border: 1px solid var(--cred-border);
+  overflow: hidden;
+  /* Hard shadow */
+  box-shadow: 12px 12px 0px rgba(0,0,0,0.5);
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 20px;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--cred-border);
+  color: white;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+}
+
+.header {
+  padding: 32px 32px 24px 32px;
+  background: var(--cred-black);
+  border-bottom: 1px solid var(--cred-border);
+  position: relative;
+}
+
+.cardName {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.rewardsList {
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.rewardItem {
+  display: flex;
+  gap: 20px;
+  padding: 24px 32px;
+  background: var(--cred-surface);
+  border-bottom: 1px solid var(--cred-border);
+  transition: all 0.2s;
+  animation: fadeInRight 0.4s ease-out backwards;
+}
+
+.rewardItem:hover {
+  background: #1a1a1a;
+  padding-left: 36px; /* Subtle slide */
+}
+
+/* Last item no border if needed, but strict grid usually keeps it */
+.rewardItem:last-child {
+  border-bottom: none;
+}
+
+.icon {
+  font-size: 24px;
+  background: var(--cred-black);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cred-border);
+  /* Sharp square icon box */
+  border-radius: 0; 
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.value {
+  font-size: 20px;
+  font-weight: 800;
+  color: white; /* Clean white instead of colored text often looks better in NeoPOP */
+  margin-bottom: 4px;
+}
+
+.category {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInRight {
+  from { transform: translateX(-10px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}

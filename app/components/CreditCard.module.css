@@ -1,0 +1,156 @@
+.cardContainer {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 450px; /* Wider card as requested */
+  aspect-ratio: 1.7; /* Wider aspect ratio */
+  position: relative;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  /* More vibrant background using the card color */
+  background: radial-gradient(circle at 100% 0%, rgba(255,255,255,0.2) 0%, transparent 50%),
+              linear-gradient(135deg, var(--card-color) 0%, #1a1a1a 80%);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.6), 
+    /* Inner border trick to avoid jagged edges on rounded corners */
+    inset 0 0 0 1px rgba(255,255,255,0.15),
+    inset 0 -1px 0 rgba(0,0,0,0.3);
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Removed external border to fix edge weirdness, using inset shadow instead */
+}
+
+.card:hover {
+  transform: translateY(-5px) rotateX(2deg);
+}
+
+/* Chip */
+/* Realistic EMV Chip */
+.chip {
+  position: absolute;
+  top: 45px;
+  left: 35px;
+  width: 55px;
+  height: 42px;
+  /* Golden base */
+  background: linear-gradient(135deg, #d4af37 0%, #c5a028 20%, #e6cfa5 40%, #c5a028 100%);
+  border-radius: 8px;
+  border: 1px solid #997b19;
+  z-index: 2;
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    0 2px 4px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+/* Chip Contacts/Circuitry lines */
+.chip::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    /* Horizontal split line */
+    linear-gradient(to bottom, transparent 48%, rgba(0,0,0,0.15) 48%, rgba(0,0,0,0.15) 52%, transparent 52%),
+    /* Vertical split lines */
+    linear-gradient(to right, transparent 30%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.15) 33%, transparent 33%),
+    linear-gradient(to right, transparent 66%, rgba(0,0,0,0.15) 66%, rgba(0,0,0,0.15) 69%, transparent 69%);
+  border-radius: 6px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Bank Name / Logo Area - Foil Effect */
+.bankLogo {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif; /* Cleaner, premium font */
+  font-weight: 800;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  z-index: 2;
+  
+  /* Silver/Platinum Foil Text Effect */
+  background: linear-gradient(to bottom, #f0f0f0 0%, #d9d9d9 30%, #a1a1a1 50%, #d9d9d9 70%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  
+  /* Subtle drop shadow to lift foil off card */
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5));
+  
+  /* Italicized like many bank logos */
+  font-style: italic;
+}
+
+/* Card Number */
+.cardNumber {
+  position: absolute;
+  top: 55%;
+  left: 35px;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 26px; /* Larger */
+  color: #fff;
+  letter-spacing: 4px;
+  text-shadow: 0 2px 2px rgba(0,0,0,0.6);
+  z-index: 2;
+  display: flex;
+  gap: 18px;
+  width: 100%;
+}
+
+/* Card Holder Name */
+.cardHolder {
+  position: absolute;
+  bottom: 35px;
+  left: 35px;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 16px; /* Larger */
+  color: rgba(255,255,255,0.9);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  z-index: 2;
+  font-weight: 600;
+}
+
+/* Network Logo (Mastercard/Visa) */
+.networkLogo {
+  position: absolute;
+  bottom: 35px;
+  right: 35px;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+
+
+/* Holographic sheen attempt */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* More dramatic sheen */
+  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 55%, transparent 60%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .cardNumber {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+  .bankLogo {
+    font-size: 20px;
+  }
+}
